@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+
+        #title {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px; /* Adjust the font size as needed */
+            font-style: italic;
+            color: white; /* Adjust the color as needed */
+        }
+
+
+        body {
+            background-image: url('/static/background_image.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            margin: 0;
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+
+        #conversation {
+            max-width: 600px;
+            margin: auto;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .message {
+            margin-bottom: 10px;
+        }
+
+        .agent1 {
+            text-align: left;
+            color: #3498db;
+        }
+
+        .agent2 {
+            text-align: right;
+            color: #e74c3c;
+        }
+
+        #conversation-container {
+            max-width: 800px; /* Adjust as needed */
+            min-height: 200px; /* Adjust as needed */
+            margin: auto;
+            overflow: hidden;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2; /* Ensure it has a higher z-index value */
+        }
+
+        s
+    </style>
+    <title>LLM Conversation</title>
+
+    <audio id="audioPlayer" controls autoplay>
+        <source src="/static/audio.mp3" type="audio/mp3">
+        Your browser does not support the audio tag.
+    </audio>
+
+
+</head>
+<body>
+    <div id="title">Conversations Over The Horizon</div>
+    <script src="/static/app.js"></script>
+    <form id="conversationForm">
+        <br>
+        <label for="agent1_name">Agent 1 Name:</label>
+        <input type="text" id="agent1_name" name="agent1_name" required>
+        <br>
+        <label for="agent2_name">Agent 2 Name:</label>
+        <input type="text" id="agent2_name" name="agent2_name" required>
+
+        <label for="topic">Topic:</label>
+
+        <input type="text" id="topic" name="topic" required>
+        <br>
+        <label for="steps">Number of Steps:</label>
+        <input type="number" id="steps" name="steps" required>
+
+        <!-- <br>
+        <label for="max_tokens_per_response">Max Tokens per Response:</label>
+        <input type="number" id="max_tokens_per_response" name="max_tokens_per_response" required>
+
+        <br>
+        <label for="response_delay">Response Delay (in seconds):</label>
+        <input type="number" id="response_delay" name="response_delay" required> -->
+
+
+        <button id="startButton">Start Conversation</button>
+    </form>
+
+    <div id="conversation-container">
+        {% for message in conversation %}
+        <div class="message {{ message.role }}">
+            {{ message.content }}
+        </div>
+        {% endfor %}
+    </div>
+    <script src="/static/app.js"></script>
+    <script>
+        // You can use JavaScript to control the audio playback
+        var audioPlayer = document.getElementById('audioPlayer');
+                        // Add logic to play, pause, etc.
+    </script>
+</body>
+</html>
+

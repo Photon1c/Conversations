@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversation App</title>
+</head>
+<body>
+    <div id="conversation-container"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script>
+        const socket = io.connect('http://' + document.domain + ':' + location.port);
+
+        function displayConversation(conversation) {
+            const container = document.getElementById('conversation-container');
+            container.innerHTML = '';
+
+            conversation.forEach(message => {
+                const role = message.role === 'user' ? 'User' : 'Agent';
+                const content = `${role}: ${message.content}`;
+                const messageElement = document.createElement('p');
+                messageElement.textContent = content;
+                container.appendChild(messageElement);
+            });
+        }
+
+        // Example: Start the conversation
+        const initialConversation = [
+            { "role": "system", "content": "You are a helpful assistant." },
+            { "role": "user", "content": "User: Hello, let's start the conversation." }
+        ];
+
+        socket.on('response', function (data) {
+            displayConversation(data['conversation']);
+        });
+
+        socket.emit('message', { 'conversation': initialConversation });
+    </script>
+</body>
+</html>
