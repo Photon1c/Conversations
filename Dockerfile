@@ -2,15 +2,15 @@
 FROM python:3.8
 
 # Set the working directory in the container
-WORKDIR /
+WORKDIR /app
 
 # Copy the application files into the working directory
-COPY . /
+COPY . /app
 
 # Install the application dependencies
 RUN pip install -r requirements.txt
 
 # Define the entry point for the container
-CMD ["flask", "run", "--host=0.0.0.0:8080"]
+CMD ["flask", "run", "--host=0.0.0.0:8080", app:app]
 
 EXPOSE 8080
