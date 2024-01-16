@@ -76,48 +76,29 @@
 
 </head>
 <body>
-    <div id="title">Conversations Over The Horizon</div>
-    <script src="/static/app.js"></script>
-    <form id="conversationForm">
-        <br>
-        <label for="agent1_name">Agent 1 Name:</label>
-        <input type="text" id="agent1_name" name="agent1_name" required>
-        <br>
-        <label for="agent2_name">Agent 2 Name:</label>
-        <input type="text" id="agent2_name" name="agent2_name" required>
+<div id="title">Conversations Over The Horizon</div>
+<script src="/static/app.js"></script>
 
-        <label for="topic">Topic:</label>
+<form id="conversationForm" pbzloc="9"><br />
+<label for="agent1_name">Agent 1 Name:</label> <input id="agent1_name" name="agent1_name" required="" type="text" /><br />
+<label for="agent2_name">Agent 2 Name:</label> <input id="agent2_name" name="agent2_name" required="" type="text" /> <label for="topic">Topic:</label> <input id="topic" name="topic" required="" type="text" /><br />
+<label for="steps">Number of Steps:</label> <input id="steps" name="steps" required="" type="text" /> <!-- <br>
+    <label for="max_tokens_per_response">Max Tokens per Response:</label>
+    <input type="number" id="max_tokens_per_response" name="max_tokens_per_response" required>
 
-        <input type="text" id="topic" name="topic" required>
-        <br>
-        <label for="steps">Number of Steps:</label>
-        <input type="number" id="steps" name="steps" required>
+    <br>
+    <label for="response_delay">Response Delay (in seconds):</label>
+    <input type="number" id="response_delay" name="response_delay" required> --><button id="startButton">Start Conversation</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em><span pbzloc="8" style="font-size: 12px">Please wait a few seconds after clicking start to generate a conversation between LLM agents.</span></em>
 
-        <!-- <br>
-        <label for="max_tokens_per_response">Max Tokens per Response:</label>
-        <input type="number" id="max_tokens_per_response" name="max_tokens_per_response" required>
+<div id="loading" style="display: none"><svg class="lds-ring" height="20" preserveaspectratio="xMidYMid" style="background: none transparent scroll repeat 0% 0%" viewbox="0 0 100 100" width="20" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" fill="none" r="40" stroke="#3498db" stroke-dasharray="62.83185307179586 62.83185307179586" stroke-width="10" transform="rotate(299.942 50 50)"><animatetransform attributename="transform" dur="1s" keytimes="0;1" repeatcount="indefinite" type="rotate" values="0 50 50;360 50 50"></animatetransform></circle></svg></div>
+</form>
 
-        <br>
-        <label for="response_delay">Response Delay (in seconds):</label>
-        <input type="number" id="response_delay" name="response_delay" required> -->
-
-
-        <button id="startButton">Start Conversation</button>
-    </form>
-
-    <div id="conversation-container">
-        {% for message in conversation %}
-        <div class="message {{ message.role }}">
-            {{ message.content }}
-        </div>
-        {% endfor %}
-    </div>
-    <script src="/static/app.js"></script>
-    <script>
+<div id="conversation-container" pbzloc="6">{% for message in conversation %}
+<div class="message {{ message.role }}">{{ message.content }}</div>
+{% endfor %}</div>
+<script src="/static/app.js"></script><script>
         // You can use JavaScript to control the audio playback
         var audioPlayer = document.getElementById('audioPlayer');
-                        // Add logic to play, pause, etc.
-    </script>
-</body>
+                            // Add logic to play, pause, etc.
+    </script></body>
 </html>
-

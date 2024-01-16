@@ -45,12 +45,19 @@ function init() {
     async function startConversation(event) {
         event.preventDefault(); // Prevent default form submission
         console.log('button clicked');
+        const loadingCircle = document.getElementById('loading');
+        loadingCircle.style.display = 'inline-block';
+        // Disable the "Start Conversation" button
+        const startButton = document.getElementById('startButton');
+        startButton.disabled = true;
 
         const form = document.getElementById('conversationForm');
         const formData = new FormData(form); // Get form data
         const conversation = Object.fromEntries(formData.entries()); // Convert FormData to JSON-like object
         console.log('Form data:', formData);
-
+        // After the conversation is done, hide the loading circle and enable the button
+        loadingCircle.style.display = 'none';
+        startButton.disabled = false;
         try {
             console.log('Making request with data:', conversation);
             const completedConversation = await makeRequest(conversation);
